@@ -1,0 +1,6 @@
+[Server]
+name=Red Hat Enterprise Linux $releasever - $basearch
+baseurl=http://download.devel.redhat.com/rel-eng/latest-RHEL-7/compose/Server/x86_64/os/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release

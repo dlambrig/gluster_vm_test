@@ -1,0 +1,16 @@
+iDRAC7 keyboard not working try: usbcore.autosuspend=-1
+change qemu.conf to run as root
+turn off sasl authentication in libvertd.conf
+restart libvirtd
+brctl - also change sysconfig files
+turn off networkManager on host
+be sure eth1 file is on master
+
+create_master
+prepare_master_for_clone
+create clones
+start clones
+set keys
+attach disks, setup eth1
+setup gluster on master
+setup clones and gluster

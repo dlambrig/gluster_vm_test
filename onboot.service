@@ -1,0 +1,8 @@
+[Unit]
+Description=My script
+
+[Service]
+ExecStart=/root/onboot.sh
+
+[Install]
+WantedBy=multi-user.target 

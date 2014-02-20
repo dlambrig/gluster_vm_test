@@ -1,0 +1,34 @@
+#!/usr/bin/expect -f 
+set vm [lindex $argv 0]
+set IP_ETH1 [lindex $argv 1]
+spawn virsh console "$vm"
+sleep 2
+send "\r"
+expect {
+	"login: " {
+		send "root\r"
+		expect "Password: "
+		send "100yard-\r"
+		expect "#"
+		send "ip link set eth0 down\r"
+		expect "#"
+		send "sed -i 's/IPADDR=.*/IPADDR=$IP_ETH1/g' /etc/sysconfig/network-scripts/ifcfg-eth1\r"
+		expect "#"
+		send "service network restart\r"
+		expect "#"
+		send "logout\r"
+		sleep 1		
+		send "\035"
+		exit
+	}
+	"#" {
+		send "ip link set eth0 down\r"
+		expect "#"
+		send "sed -i 's/IPADDR=.*/IPADDR=$IP_ETH1/g' /etc/sysconfig/network-scripts/ifcfg-eth1\r"
+		expect "#"
+		send "service network restart\r"
+		expect "#"
+		send "\035"
+		exit
+	}
+}

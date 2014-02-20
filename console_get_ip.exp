@@ -1,0 +1,26 @@
+#!/usr/bin/expect -f 
+set vm [lindex $argv 0]
+set interface [lindex $argv 1]
+spawn virsh console "$vm"
+sleep 2
+send "\r"
+expect {
+	"login: " {
+		send "root\r"
+		expect "Password: "
+		send "100yard-\r"
+		expect "#"
+		send "ip addr show $interface\r"
+		expect "#"
+		send "logout\r"
+		sleep 1		
+		send "\035"
+		exit
+	}
+	"#" {
+		send "ip addr show $interface\r"
+		expect "#"
+		send "\035"
+		exit
+	}
+}
