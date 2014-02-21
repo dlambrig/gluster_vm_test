@@ -5,6 +5,7 @@ restart libvirtd
 brctl - also change sysconfig files
 turn off networkManager on host
 be sure eth1 file is on master
+no selinux , firewalld, iptables
 
 create_master
 prepare_master_for_clone
