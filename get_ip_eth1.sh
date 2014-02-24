@@ -6,7 +6,7 @@ vm=${array[1]}
 case "$host" in
 
 gprfs037) 
-IP_D3=0
+IP_D3=1
 ;;
 
 gprfs038) 
