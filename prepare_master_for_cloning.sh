@@ -10,5 +10,6 @@ scp /root/setup/onboot.service $IP:/etc/systemd/system
 ssh $IP chmod +x onboot.sh
 ssh $IP systemctl enable onboot.service
 ssh $IP yum -y install glusterfs-server
+ssh $IP grep rpc-auth-allow-insecure /etc/glusterfs/glusterd.vol || sed -i '/rdma/aoption rpc-auth-allow-insecure on' /etc/glusterfs/glusterd.vol
 
 virsh attach-interface $1 --type bridge br1 --config --model virtio
