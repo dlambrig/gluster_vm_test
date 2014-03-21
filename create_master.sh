@@ -6,7 +6,6 @@ OS=http://download.devel.redhat.com/rel-eng/latest-RHEL-7/compose/Server/x86_64/
 NETWORK=bridge=br0
 MEM=$((4 * 1024))
 qemu-img create -f qcow2 -o preallocation=metadata /home/storage/vm.qcow1 5G
-mkdir /home/storage
 DISK=path=/home/storage/vm.qcow1,format=qcow2,bus=virtio,cache=none 
 
 # just in case this blocks ftp..

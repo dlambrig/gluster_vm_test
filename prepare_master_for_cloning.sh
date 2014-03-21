@@ -1,5 +1,7 @@
 
 IP=`./get_ip.sh $1`
+IP_ETH1=`./get_ip_eth1.sh $1`
+sed -i 's/IPADDR=.*/IPADDR='$IP_ETH1'/g' ifcfg-eth1
 sshpass -p 100yard- ssh-copy-id -o StrictHostKeyChecking="no" -i ~/.ssh/id_rsa.pub $IP
 sshpass -p 100yard- ssh-copy-id -o StrictHostKeyChecking="no" -i ~/.ssh/id_rsa.pub localhost
 scp /root/setup/rhel7.repo $IP:/etc/yum.repos.d
@@ -12,4 +14,4 @@ ssh $IP systemctl enable onboot.service
 ssh $IP yum -y install glusterfs-server
 ssh $IP grep rpc-auth-allow-insecure /etc/glusterfs/glusterd.vol || sed -i '/rdma/aoption rpc-auth-allow-insecure on' /etc/glusterfs/glusterd.vol
 
-virsh attach-interface $1 --type bridge br1 --config --model virtio
+virsh attach-interface $1 --type bridge --source br1 
