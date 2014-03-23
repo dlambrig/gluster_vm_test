@@ -22,19 +22,19 @@ IP_D3=45
 ;;
 
 gprfs021) 
-IP_D3=45
+IP_D3=60
 ;;
 
 gprfs022) 
-IP_D3=45
+IP_D3=75
 ;;
 
 gprfs023) 
-IP_D3=45
+IP_D3=90
 ;;
 
 gprfs024) 
-IP_D3=45
+IP_D3=105
 ;;
 *)
 IP_D3=150
