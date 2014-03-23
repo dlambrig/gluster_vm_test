@@ -9,9 +9,11 @@ scp /root/setup/gluster.repo $IP:/etc/yum.repos.d
 scp /root/setup/onboot.sh $IP:~
 scp /root/setup/ifcfg-eth1 $IP:/etc/sysconfig/network-scripts
 scp /root/setup/onboot.service $IP:/etc/systemd/system
+ssh $IP chkconfig NetworkManager off
 ssh $IP chmod +x onboot.sh
 ssh $IP systemctl enable onboot.service
 ssh $IP yum -y install glusterfs-server
+ssh $IP yum -y install net-tools
 ssh $IP grep rpc-auth-allow-insecure /etc/glusterfs/glusterd.vol || sed -i '/rdma/aoption rpc-auth-allow-insecure on' /etc/glusterfs/glusterd.vol
 
 virsh attach-interface $1 --type bridge --source br1 
