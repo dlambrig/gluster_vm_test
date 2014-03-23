@@ -5,7 +5,7 @@ for host in $1; do
 		diskletter=`perl -e 'printf "%c\n", '$disk';'`
 		diskstr="sd${diskletter}"
 		vmname="${host}_${vm}"
-		ssh $host virsh attach-disk $vmname /dev/$diskstr --target vdb
+		ssh $host virsh attach-disk $vmname /dev/$diskstr --persistent --target vdb
 
 		IP_ETH1=`./get_ip_eth1.sh $vmname`
 		IP_ETH0=`./get_ip.sh $vmname`
