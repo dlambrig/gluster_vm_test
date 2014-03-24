@@ -14,7 +14,7 @@ ssh $IP yum -y install glusterfs-server
 ssh $IP yum -y install net-tools
 ssh $IP grep rpc-auth-allow-insecure /etc/glusterfs/glusterd.vol || sed -i '/rdma/aoption rpc-auth-allow-insecure on' /etc/glusterfs/glusterd.vol
 
-virsh attach-interface $1 --persistent  --type bridge --source br1 
+virsh attach-interface $1 --persistent  --type bridge --source br1 --model virtio
 MAC=`virsh dumpxml $1|grep -B 1  br1|grep mac|cut -b 21-37`
 sed -i 's/HWADDR=.*/HWADDR='$MAC'/g' ifcfg-eth1
 sed -i 's/IPADDR=.*/IPADDR='$IP_ETH1'/g' ifcfg-eth1
